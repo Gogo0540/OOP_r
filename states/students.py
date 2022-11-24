@@ -12,7 +12,10 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 
 
 class StudentFSMAdmin(StatesGroup):
-    _id = State()
     name = State()
     photo = State()
     course = State()
+
+
+class CourseFSMAdmin(StatesGroup):
+    name = State()
