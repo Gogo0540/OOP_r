@@ -14,14 +14,20 @@ def sql_start():
         base.execute(
             'CREATE TABLE IF NOT EXISTS course(name TEXT PRIMARY KEY)'
         )
+        base.execute(
+            'CREATE TABLE IF NOT EXISTS shop(name TEXT PRIMARY KEY, photo TEXT, prise DOUBLE, category TEXT)'
+        )
         base.commit()
 
 
 async def sql_add_command(state, table):
+    global insert_query
     if table == 'student':
         insert_query = f'INSERT INTO {table} VALUES (?, ?, ?)'
     elif table == 'course':
         insert_query = f'INSERT INTO {table} VALUES (?)'
+    elif table == 'category':
+        insert_query = f'INSERT INTO {table} VALUES (?, ?, ?, ?)'
 
     async with state.proxy() as data:
         cursor.execute(

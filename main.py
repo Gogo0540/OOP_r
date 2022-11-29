@@ -4,8 +4,7 @@ from aiogram import executor
 
 from bot import dp
 from handlers.client import info
-from handlers.student import admin 
-
+from handlers.student import admin, shop
 
 async def on_startup(_):
     print('Bot has started')
@@ -15,6 +14,7 @@ async def on_startup(_):
 
 info.register_client_handler(dp)
 admin.register_student_handler(dp)
+shop.register_shop_handler(dp)
 
 
 if "__main__" == __name__:

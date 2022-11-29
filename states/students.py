@@ -19,3 +19,10 @@ class StudentFSMAdmin(StatesGroup):
 
 class CourseFSMAdmin(StatesGroup):
     name = State()
+
+
+class ShopFSMAdmin(StatesGroup):
+    name = State()
+    photo = State()
+    prise = State()
+    category = State()

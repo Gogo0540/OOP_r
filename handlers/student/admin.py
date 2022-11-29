@@ -103,7 +103,7 @@ def register_student_handler(dp: Dispatcher):
     dp.register_message_handler(set_student_photo, content_types=['photo'], state=StudentFSMAdmin.photo)
     dp.register_message_handler(set_student_course, state=StudentFSMAdmin.course)
     dp.register_message_handler(get_students_list, commands=['students_list'])
-    dp.register_message_handler(make_changes_command, commands=['admin'], is_chat_admin=True)
+    dp.register_message_handler(make_changes_command, commands=['admin'])
     dp.register_message_handler(create_course, commands=['add_course'])
     dp.register_message_handler(set_course_name, state=CourseFSMAdmin.name)
     dp.register_message_handler(get_courses_list, commands=['courses_list'])
