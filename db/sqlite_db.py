@@ -21,12 +21,11 @@ def sql_start():
 
 
 async def sql_add_command(state, table):
-    global insert_query
     if table == 'student':
         insert_query = f'INSERT INTO {table} VALUES (?, ?, ?)'
     elif table == 'course':
         insert_query = f'INSERT INTO {table} VALUES (?)'
-    elif table == 'category':
+    elif table == 'shop':
         insert_query = f'INSERT INTO {table} VALUES (?, ?, ?, ?)'
 
     async with state.proxy() as data:
@@ -34,3 +33,9 @@ async def sql_add_command(state, table):
             insert_query, tuple(data.values())
         )
         base.commit()
+
+
+async def sql_get_category_command(category):
+    select_query = f'SELECT * FROM shop WHERE category = ?'
+
+    return cursor.execute(select_query, (category,))

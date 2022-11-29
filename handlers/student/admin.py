@@ -6,7 +6,7 @@ from bot import dp, bot
 
 from states.students import StudentFSMAdmin, CourseFSMAdmin
 from db import sqlite_db
-from keyboards.client.admin import student_keyboard
+from keyboards.client.info import client_keyboard
 
 
 ID = None
@@ -16,7 +16,7 @@ async def make_changes_command(message: types.Message):
     global ID
     ID = message.from_user.id
     await bot.send_message(
-        message.from_user.id, "choose action: ", reply_markup=student_keyboard
+        message.from_user.id, "choose action: ", reply_markup=client_keyboard
     )
     await message.delete()
 
