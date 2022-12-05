@@ -13,7 +13,6 @@ async def on_startup(_):
 
 
 info.register_client_handler(dp)
-admin.register_student_handler(dp)
 shop.register_shop_handler(dp)
 
 
