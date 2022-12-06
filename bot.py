@@ -5,7 +5,7 @@ import os
 
 storage = MemoryStorage()
 
-
-bot = Bot(token="5812120409:AAFUcV6Grc9KcJS-slCNJYukzhRjoi9-iD4")
+# TOKEN = "5812120409:AAFUcV6Grc9KcJS-slCNJYukzhRjoi9-iD4"
+TOKEN = '5657011402:AAFRTPDQMEPTwHWF40ME4NLD9D5ivmtRVkg'
+bot = Bot(token=TOKEN)
 dp = Dispatcher(bot, storage=storage)
-

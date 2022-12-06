@@ -6,7 +6,7 @@ from bot import dp, bot
 from keyboards.client.info import client_keyboard
 from states.students import ShopFSMAdmin
 from db import sqlite_db
-
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 ID = None
 
 
@@ -57,7 +57,7 @@ async def set_product_photo(message: types.Message, state: FSMContext):
 async def set_product_category(message: types.Message, state: FSMContext):
     if message.from_user.id == ID:
         async with state.proxy() as data:
-            data['category'] = message.text
+            data['category_id'] = int(message.text.split('.')[0])
         await sqlite_db.sql_add_command(state, 'shop')
         await state.finish()
         await message.answer('Готово')
@@ -67,11 +67,11 @@ async def set_product_price(message: types.Message, state: FSMContext):
     if message.from_user.id == ID:
         async with state.proxy() as data:
             data['price'] = int(message.text)
-
-        await message.answer('Send Category on product:\n'
-                             f"1. Бытовая техника\n"
-                             f"2. Телефоны\n"
-                             f"3. Гаджеты ")
+        category_markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+        categories = await sqlite_db.sql_get_category_names()
+        for cat in categories:
+            category_markup.add(KeyboardButton(f'{cat[0]}. {cat[1]}'))
+        await message.answer('Select Category on product', reply_markup=category_markup)
         await ShopFSMAdmin.next()
 
 

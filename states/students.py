@@ -7,3 +7,7 @@ class ShopFSMAdmin(StatesGroup):
     photo = State()
     prise = State()
     category = State()
+
+
+class CategoryFSMAdmin(StatesGroup):
+    name = State()
